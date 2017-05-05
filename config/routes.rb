@@ -24,8 +24,10 @@ Rails.application.routes.draw do
       post 'signup' => 'registrations#create'
       post 'signin' => 'sessions#create'
     end
-    
+
     patch 'me/avatar' => 'avatar_images#update'
+
+    post ':username/ask', to: 'profile#ask', as: 'profile_ask'
   end
 
 end

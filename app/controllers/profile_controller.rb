@@ -1,10 +1,15 @@
 class ProfileController < ApplicationController
   before_action :set_user
-  before_filter :authenticate_user!, only: [:follow, :unfollow]
+  before_action :authenticate_user!
 
   def ask
-    Review.create_review(@user, current_user, review_params)
+    review = Review.create_review(@user, current_user, review_params)
     redirect_to profile_reviews_path params[:username]
+    if review.save
+      render json: review, status: 201
+    else
+      render json: { errors: review.errors.full_messages }, status: 422
+    end
   end
 
   def review
