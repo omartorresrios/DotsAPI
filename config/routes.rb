@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     end
 
     patch 'me/avatar' => 'avatar_images#update'
+    get ':username', to: 'profile#reviews', as: 'profile_reviews'
 
     post ':username/ask', to: 'profile#ask', as: 'profile_ask'
   end

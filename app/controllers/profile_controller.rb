@@ -14,6 +14,7 @@ class ProfileController < ApplicationController
 
   def review
     @reviews = @user.received_reviews
+    render json: @reviews, status: 200
   end
 
   private
