@@ -1,15 +1,41 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :save_action_name
+class ApplicationController < ActionController::API
+  include ActionController::HttpAuthentication::Token::ControllerMethods
+  attr_reader :current_user
+
+  def authenticate_user!
+    authenticate_user_from_token || render_unauthorized
+  end
 
   protected
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :fullname, :email, :password, :password_confirmation, :remember_me) }
-    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:username, :password, :remember_me) }
-  end
 
-  def save_action_name
-    @current_action = action_name
-  end
+    def authenticate_user_from_token
+      if user_id_in_token?
+        @current_user ||= User.find_by(id: auth_token[:user_id])
+      else
+        nil
+      end
+    end
+
+    def render_unauthorized
+      self.headers['WWW-Authenticate'] = 'Token realm="Application"'
+      render json: { errors:  ['Bad credentials'] }, status: 401
+    end
+
+    def user_id_in_token?
+      http_token && auth_token && auth_token[:user_id]
+    end
+
+    def http_token
+      authenticate_with_http_token do |token|
+        @http_token = token
+      end
+    end
+
+    def auth_token
+      begin
+        @auth_token ||=  JsonWebToken.decode(http_token)
+      rescue JWT::VerificationError, JWT::DecodeError
+        return nil
+      end
+    end
 end
