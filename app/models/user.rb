@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     format: { with: EMAIL_REGEX }
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates :fullname, presence: true
+  validates :fullname, presence: true, length: { in: 2..30 }
+  validates :password, length: { minimum: 8 }
 
   mount_uploader :avatar, AvatarUploader
 

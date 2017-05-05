@@ -2,6 +2,15 @@ class ProfileController < ApplicationController
   before_action :set_user
   before_action :authenticate_user!
 
+  def show
+    user = User.find_by(username: params[:username])
+    if user.present?
+      render json: user, serializer: PublicProfileSerializer, status: 200
+    else
+      render json: { errors: ["User not found"] }, status: 422
+    end
+  end
+
   def ask
     review = Review.create_review(@user, current_user, review_params)
     redirect_to profile_reviews_path params[:username]
