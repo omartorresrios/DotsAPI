@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       post 'signup' => 'registrations#create'
       post 'signin' => 'sessions#create'
     end
+    
+    patch 'me/avatar' => 'avatar_images#update'
   end
 
 end
