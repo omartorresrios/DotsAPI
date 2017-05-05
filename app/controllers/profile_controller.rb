@@ -13,7 +13,7 @@ class ProfileController < ApplicationController
   end
 
   def review
-    @reviews = @user.received_reviews
+    @reviews = @user.received_reviews.order(created_at: :desc)
     render json: @reviews, status: 200
   end
 
