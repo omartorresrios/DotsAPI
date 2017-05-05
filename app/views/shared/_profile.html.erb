@@ -1,0 +1,39 @@
+<div class="row user-information">
+  <div class="col-md-2">
+    <%= image_tag @user.avatar.url, :class => 'profile-picture' %>
+  </div>
+  <div class="col-md-6">
+    <strong class="profile-username"><%= @user.fullname %></strong>
+    <span class="text-muted">| @<%= @user.username %></span>
+    <span class="display-block"><%= @user.location %></span>
+
+    <p class="text-muted">
+      <em>
+        <%= @user.description %>
+      </em>
+    </p>
+  </div>
+</div>
+
+<div class="row post-question">
+  <div class="col-md-12">
+    <h4>
+      <strong><%= @user.title %></strong>
+    </h4>
+    <%= form_for(Review.new, url: profile_ask_url) do |f| %>
+      <div class="panel panel-default">
+        <label for="review" class="sr-only">Review:</label>
+        <%= f.text_area :content, :class => 'emoji character-limit' %>
+        <div class="panel-footer clearfix">
+          <span id="remaining" class="pull-left letters-left character-count" data-default-value="300">300</span>
+          <div class="pull-right">
+            <% if user_signed_in? %>
+            <label class="check"><%= f.check_box :anonymous %>Anonymous Review</label>
+            <% end %>
+            <%= f.submit 'Ask', :class => 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container main-content profile">
+  <%= render 'shared/profile' %>
+
+  <div class="row answers">
+    <div class="col-md-12">
+      <h4><strong>Reviews</strong></h4>
+      <ul class="list-unstyled">
+        <% @reviews.each do |review| %>
+        <li>
+          <%= review.content %>
+          <a href="<%= profile_reviews_url(review.sender.username) %>" class="go-to">
+            <strong><%= review.sender.fullname %></strong>
+            <span class="text-muted">| @<%= review.sender.username %></span>
+          </a>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
