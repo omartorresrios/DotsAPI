@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt', '~> 1.5'
+gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'carrierwave', '~> 0.11.2'
 

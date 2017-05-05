@@ -23,13 +23,14 @@ Rails.application.routes.draw do
     namespace :users do
       post 'signup' => 'registrations#create'
       post 'signin' => 'sessions#create'
+      post 'facebook/login' => 'facebook_logins#create'
     end
 
     patch 'me/avatar' => 'avatar_images#update'
 
     get ':username/public_profile', to: 'profile#show'
-    get ':username', to: 'profile#reviews', as: 'profile_reviews'
-    post ':username/ask', to: 'profile#ask', as: 'profile_ask'
+    get ':username', to: 'profile#reviews'
+    post ':username/ask', to: 'profile#ask'
 
   end
 
