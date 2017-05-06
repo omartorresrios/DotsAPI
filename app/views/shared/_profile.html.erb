@@ -23,7 +23,7 @@
     <%= form_for(Review.new, url: profile_ask_url) do |f| %>
       <div class="panel panel-default">
         <label for="review" class="sr-only">Review:</label>
-        <%= f.text_area :content, :class => 'emoji character-limit' %>
+        <%= f.text_area :content %>
         <div class="panel-footer clearfix">
           <span id="remaining" class="pull-left letters-left character-count" data-default-value="300">300</span>
           <div class="pull-right">
