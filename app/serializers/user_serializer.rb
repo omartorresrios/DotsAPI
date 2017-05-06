@@ -1,5 +1,5 @@
-class UserSimpleSerializer < ActiveModel::Serializer
-  attributes :id, :fullname, :avatar_url
+class UserSerializer < ActiveModel::Serializer
+  attributes :id, :fullname, :username :avatar_url
 
   def avatar_url
     object.avatar_url

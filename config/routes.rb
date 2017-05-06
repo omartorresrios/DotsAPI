@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
 
   scope 'settings' do
-    get 'profile', to: 'settings#profile', as: 'settings_settings'
-    patch 'profile', to: 'settings#update_profile', as: 'account_settings_update'
+    get 'profile' => 'settings#profile', as: 'settings_settings'
+    patch 'profile' => 'settings#update_profile', as: 'account_settings_update'
     # Avatar
-    get 'avatar', to: 'settings#avatar', as: 'account_settings_avatar'
-    patch 'avatar', to: 'settings#update_avatar', as: 'account_settings_avatar_update'
+    get 'avatar' => 'settings#avatar', as: 'account_settings_avatar'
+    patch 'avatar' => 'settings#update_avatar', as: 'account_settings_avatar_update'
   end
 
   # Search
-  get 'search', to: 'search#search', as: 'search_search'
-  post 'search', to: 'search#do_search', as: 'search_do_search'
+  get 'search' => 'search#search', as: 'search_search'
+  post 'search' => 'search#do_search', as: 'search_do_search'
 
   # Users profile
-  post ':username/ask', to: 'profile#ask', as: 'profile_ask'
-  get ':username', to: 'profile#reviews', as: 'profile_reviews'
+  post ':username/write' => 'profile#write', as: 'profile_wirte'
+  get ':username' => 'profile#reviews', as: 'profile_reviews'
 
   root 'home#home'
 
@@ -23,14 +23,17 @@ Rails.application.routes.draw do
     namespace :users do
       post 'signup' => 'registrations#create'
       post 'signin' => 'sessions#create'
-      post 'facebook/login' => 'facebook_logins#create'
+      # post 'facebook/login' => 'facebook_logins#create'
     end
 
-    patch 'me/avatar' => 'avatar_images#update'
+    # patch ':username/avatar' => 'avatar_images#update'
 
-    get ':username/public_profile', to: 'profile#show'
-    get ':username', to: 'profile#reviews'
-    post ':username/ask', to: 'profile#ask'
+    get ':username/public_profile' => 'profile#show'
+    get ':username/reviews' => 'profile#reviews'
+    post ':username/write' => 'profile#write'
+
+    get 'search' => 'search#search'
+    post 'search' => 'search#do_search'
 
   end
 

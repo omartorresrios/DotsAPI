@@ -11,9 +11,9 @@ class ProfileController < ApplicationController
     end
   end
 
-  def ask
+  def write
     review = Review.create_review(@user, current_user, review_params)
-    redirect_to profile_reviews_path params[:username]
+    # redirect_to profile_reviews_path params[:username]
     if review.save
       render json: review, status: 201
     else
@@ -21,7 +21,7 @@ class ProfileController < ApplicationController
     end
   end
 
-  def review
+  def reviews
     @reviews = @user.received_reviews.order(created_at: :desc)
     render json: @reviews, status: 200
   end
@@ -35,10 +35,6 @@ class ProfileController < ApplicationController
     end
 
     def set_user
-      @user = User.find_by_username params[:username]
-
-      if @user.nil?
-        redirect_to root_path
-      end
+      @user = User.find_by(username: params[:username])
     end
 end

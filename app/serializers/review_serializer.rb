@@ -1,7 +1,7 @@
 class ReviewSerializer < ActiveModel::Serializer
-  attributes :id, :content, :created_at, :from
+  attributes :id, :content, :created_at, :from, :to
 
-  belongs_to :sender, :class_name => 'User', :foreign_key => 'from', serializer: UserSimpleSerializer
-  belongs_to :receiver, :class_name => 'User', :foreign_key => 'to', serializer: UserSimpleSerializer
+  belongs_to :sender, :class_name => 'User', :foreign_key => 'from', serializer: UserSerializer
+  belongs_to :receiver, :class_name => 'User', :foreign_key => 'to', serializer: UserSerializer
 
 end
