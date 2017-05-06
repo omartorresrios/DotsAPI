@@ -19,10 +19,10 @@ class User < ActiveRecord::Base
   end
 
   def avatar_url
-    if facebook_login?
-      "http://graph.facebook.com/#{facebook_id}/picture?type=normal"
+    if facebook_login? && avatar.url.nil?
+      "http://graph.facebook.com/#{facebook_id}/picture?type=large"
     else
       avatar.url    
-      end
+    end
   end
 end
