@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
-  has_secure_password
+  has_secure_password, validations: false
   EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     format: { with: EMAIL_REGEX }, unless: :facebook_login?
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :fullname, presence: true, length: { in: 2..30 }
-  validates :password, length: { minimum: 8 }, unless: :facebook_login?
+  validates :password, presence: true, length: { minimum: 8 }, unless: :facebook_login?
 
   mount_uploader :avatar, AvatarUploader
 
