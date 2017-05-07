@@ -14,6 +14,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt', '~> 1.5'
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.2'
+gem "rails-api"
 gem 'carrierwave', '~> 0.11.2'
 
 group :development, :test do
