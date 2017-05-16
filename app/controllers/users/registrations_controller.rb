@@ -8,11 +8,11 @@ class Users::RegistrationsController < ApplicationController
   # }
   def create
     if request.post?
-      if params && params[:full_name] && params[:email] && params[:password]
+      if params && params[:fullname] && params[:username] && params[:email] && params[:password]
         
         params[:user] = Hash.new    
-        params[:user][:first_name] = params[:full_name].split(" ").first
-        params[:user][:last_name] = params[:full_name].split(" ").last
+        params[:user][:fullname] = params[:fullname]
+        params[:user][:username] = params[:username]
         params[:user][:email] = params[:email]
         
         begin 

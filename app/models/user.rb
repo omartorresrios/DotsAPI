@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  before_save :encrypt_password
   has_secure_password validations: false
 
   EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
@@ -12,10 +12,42 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  def self.authenticate(email_or_fullname, password)
-    user = User.find_by(email: email_or_fullname) || User.find_by(username: email_or_fullname)
-    user && user.authenticate(password)
+  def encrypt_password
+    if password.present?      
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+    end
   end
+  
+  def self.authenticate(login_name, password)
+    user = self.where("email =?", login_name).first
+                   
+    if user 
+      puts "******************* #{password} 1"
+      
+      begin
+        password = AESCrypt.decrypt(password, ENV["API_AUTH_PASSWORD"])      
+      rescue Exception => e
+        password = nil
+        puts "error - #{e.message}"
+      end
+      
+      puts "******************* #{password} 2"
+              
+      if user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+        user
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+
+  # def self.authenticate(email_or_fullname, password)
+  #   user = User.find_by(email: email_or_fullname) || User.find_by(username: email_or_fullname)
+  #   user && user.authenticate(password)
+  # end
 
   def facebook_login?
     facebook_id.present?
