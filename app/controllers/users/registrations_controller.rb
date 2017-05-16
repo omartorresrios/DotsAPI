@@ -1,4 +1,6 @@
 class Users::RegistrationsController < ApplicationController
+  before_filter :check_for_valid_authtoken, :except => [:signup, :signin, :get_token]
+
   # POST '/api/users/signup'
   # BODY: {
   #   email: String,
@@ -6,6 +8,7 @@ class Users::RegistrationsController < ApplicationController
   #   username: String,
   #   password: String
   # }
+
   def create
     if request.post?
       if params && params[:fullname] && params[:username] && params[:email] && params[:password]
@@ -58,5 +61,23 @@ class Users::RegistrationsController < ApplicationController
 
     def user_params
       params.permit(:username, :fullname, :email, :password)
+    end
+
+    def check_for_valid_authtoken
+      authenticate_or_request_with_http_token do |token, options|     
+        @user = User.where(:api_authtoken => token).first      
+      end
+    end
+
+    def rand_string(len)
+      o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+      string  =  (0..len).map{ o[rand(o.length)]  }.join
+
+      return string
+    end
+
+    def user_params
+      params.require(:user).permit(:fullname, :username, :email, :password, :password_hash, :password_salt, :verification_code, 
+      :email_verification, :api_authtoken, :authtoken_expiry)
     end
 end
