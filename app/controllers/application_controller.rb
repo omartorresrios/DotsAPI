@@ -8,11 +8,11 @@ class ApplicationController < ActionController::API
 
   protected
 
-    def authenticate_user_from_token
-      if user_id_in_token?
-        @current_user ||= User.find_by(id: auth_token[:user_id])
+    def authenticate_user_from_token!
+      if claims and customer = User.find_by(email: claims[0]['email'])
+        @current_user = user
       else
-        nil
+        invalid_authentication
       end
     end
 
