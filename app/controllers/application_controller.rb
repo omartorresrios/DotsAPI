@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   attr_reader :current_user
 
   def authenticate_user!
-    authenticate_user_from_token || render_unauthorized
+    authenticate_user_from_token! || render_unauthorized
   end
 
   protected
