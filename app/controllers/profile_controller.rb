@@ -28,7 +28,7 @@ class ProfileController < ApplicationController
 
   private
     def review_params
-      params.permit(:content)
+      params.permit(:content, :anonymous)
     end
 
     def set_user
