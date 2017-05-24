@@ -28,9 +28,6 @@ class ProfileController < ApplicationController
 
   private
     def review_params
-      unless user_signed_in?
-        params[:content]['anonymous'] = 1
-      end
       params.require(:review).permit(:content, :anonymous)
     end
 
