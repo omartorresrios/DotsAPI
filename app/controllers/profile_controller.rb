@@ -28,7 +28,7 @@ class ProfileController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:content)
+      params.permit(:content)
     end
 
     def set_user
