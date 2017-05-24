@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   attr_reader :current_user
 
   def authenticate_user!
-    authenticate_user_from_token! || render_unauthorized
+    authenticate_user_from_token!
   end
 
   protected
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
       if user = User.find_by(email: ['email'])
         @current_user = user
       else
-        invalid_authentication
+        render_unauthorized
       end
     end
 
