@@ -5,7 +5,7 @@ class PublicProfileSerializer < ActiveModel::Serializer
     {
       username: object.username,
       fullname: object.fullname,
-      avatar_url: object.avatar_url
+      # avatar_url: object.avatar_url
     }
   end
 end
