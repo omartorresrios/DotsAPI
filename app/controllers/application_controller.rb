@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
   protected
 
     def authenticate_user_from_token!
-      if claims and customer = User.find_by(email: claims[0]['email'])
+      if user = User.find_by(email: ['email'])
         @current_user = user
       else
         invalid_authentication
