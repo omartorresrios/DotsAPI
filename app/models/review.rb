@@ -13,9 +13,10 @@ class Review < ActiveRecord::Base
     review.from = current.nil? ? nil : current.id
     review.to = user.id
     review.content = params[:content]
-    review.anonymous = params[:anonymous].to_i == 1 ? true : false
+    # review.anonymous = params[:anonymous].to_i == 1 ? true : false
     review.created_at = Time.now
     review.save
+    review
   end
 
   def self.answer(user_id, review_id, params)
