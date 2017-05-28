@@ -32,8 +32,9 @@ Rails.application.routes.draw do
     get ':username/reviews' => 'profile#reviews'
     post ':username/write' => 'profile#write'
 
-    get 'search' => 'search#search'
-    post 'search' => 'search#do_search'
+    get 'all_users' => 'search#index'
+    # get 'search' => 'search#search'
+    # post 'search' => 'search#do_search'
 
   end
 
