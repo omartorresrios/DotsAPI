@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post 'search' => 'search#do_search', as: 'search_do_search'
 
   # Users profile
-  post ':username/write' => 'profile#write', as: 'profile_wirte'
+  post ':username/write' => 'profile#write', as: 'profile_write'
   get ':username' => 'profile#reviews', as: 'profile_reviews'
 
   root 'home#home'
@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     get 'all_users' => 'search#index'
     # get 'search' => 'search#search'
     # post 'search' => 'search#do_search'
+
+    # Avatar
+    get 'avatar' => 'settings#avatar'
+    patch 'avatar' => 'settings#update_avatar'
 
   end
 
