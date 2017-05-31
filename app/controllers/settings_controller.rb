@@ -13,8 +13,17 @@ class SettingsController < ApplicationController
 
   end
 
+  # def update_avatar
+  #   current_user.update params.require(:user).permit(:avatar)
+  # end
+
   def update_avatar
-    current_user.update params.require(:user).permit(:avatar)
+    image = StringIO.new(Base64.decode64(params.require(:user).permit(:avatar).tr(' ', '+')))
+    image.class.class_eval { attr_accessor :original_filename, :content_type }
+    image.original_filename = SecureRandom.hex + '.png'
+    image.content_type = 'image/png'
+
+    current_user.update_attributes(image)
   end
 
   protected
