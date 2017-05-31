@@ -18,7 +18,7 @@ class SettingsController < ApplicationController
   # end
 
   def update_avatar
-    image = StringIO.new(Base64.decode64(params[:avatar].tr(' ', '+').to_s))
+    image = StringIO.new(Base64.decode64(params[:avatar].tr(' ', '+')).to_s)
     image.class.class_eval { attr_accessor :original_filename, :content_type }
     image.original_filename = SecureRandom.hex + '.png'
     image.content_type = 'image/png'
