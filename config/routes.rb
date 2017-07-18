@@ -37,8 +37,8 @@ Rails.application.routes.draw do
     # post 'search' => 'search#do_search'
 
     # Avatar
-    get 'avatar' => 'settings#avatar'
-    patch 'avatar' => 'settings#update_avatar'
+    # get 'avatar' => 'settings#avatar'
+    # patch 'avatar' => 'settings#update_avatar'
 
   end
 

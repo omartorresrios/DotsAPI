@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :fullname, presence: true, format: { with: FULLNAME_REGEX, message: "should be one word" }, unless: :facebook_login?
   validates :password, presence: true, length: { minimum: 8 }, unless: :facebook_login?
 
-  mount_uploader :avatar, AvatarUploader
+  
 
   def self.authenticate(email_or_fullname, password)
     user = User.find_by(email: email_or_fullname) || User.find_by(username: email_or_fullname)
@@ -23,11 +23,11 @@ class User < ActiveRecord::Base
     facebook_id.present?
   end
 
-  def avatar_url
-    if facebook_login? && avatar.url.nil?
-      "https://graph.facebook.com/#{facebook_id}/picture?type=large"
-    else
-      avatar.url    
-    end
-  end
+  # def avatar_url
+  #   if facebook_login? && avatar.url.nil?
+  #     "https://graph.facebook.com/#{facebook_id}/picture?type=large"
+  #   else
+  #     avatar.url    
+  #   end
+  # end
 end

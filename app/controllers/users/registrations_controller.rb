@@ -18,6 +18,6 @@ class Users::RegistrationsController < ApplicationController
   private
 
     def user_params
-      params.permit(:username, :fullname, :email, :password, :avatar)
+      params.permit(:username, :fullname, :email, :password)
     end
 end
