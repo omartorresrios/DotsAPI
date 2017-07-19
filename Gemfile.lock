@@ -331,7 +331,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jwt (~> 1.5)
-  paperclip
+  paperclip (~> 5.0.0)
   pg (~> 0.15)
   rack-cors
   rails (= 4.2.6)

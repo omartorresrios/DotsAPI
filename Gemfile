@@ -25,7 +25,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'figaro'
-  gem 'paperclip'
+  gem "paperclip", "~> 5.0.0"
   gem 'aws-sdk', '~> 2.3'
 end
 
