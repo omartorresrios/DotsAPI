@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
       data.original_filename = self.id.to_s + ".png"
       data.content_type = "image/png"
 
-      self.avatar = data
+      self.avatar.url = data
     end
   end
 
