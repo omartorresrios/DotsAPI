@@ -12,7 +12,12 @@ class User < ActiveRecord::Base
   validates :fullname, presence: true, format: { with: FULLNAME_REGEX, message: "should be one word" }, unless: :facebook_login?
   validates :password, presence: true, length: { minimum: 8 }, unless: :facebook_login?
 
-  
+  attr_accessible :avatar_data, :avatar
+  attr_accessor :avatar_data
+
+  has_attached_file :avatar, styles: { medium: ["300x300>", :png], thumb: ["100x100>", :png]}
+
+  before_save :decode_avatar_data
 
   def self.authenticate(email_or_fullname, password)
     user = User.find_by(email: email_or_fullname) || User.find_by(username: email_or_fullname)
@@ -21,6 +26,20 @@ class User < ActiveRecord::Base
 
   def facebook_login?
     facebook_id.present?
+  end
+
+  def decode_avatar_data
+    # If avatar_data is present, it means that we were sent an avatar over
+    # JSON and it needs to be decoded.  After decoding, the avatar is processed
+    # normally via Paperclip.
+    if self.avatar_data.present?
+      data = StringIO.new(Base64.decode64(self.avatar_data))
+      data.class.class_eval {attr_accessor :original_filename, :content_type}
+      data.original_filename = self.id.to_s + ".png"
+      data.content_type = "image/png"
+
+      self.avatar = data
+    end
   end
 
   # def avatar_url

@@ -14,7 +14,7 @@ class SettingsController < ApplicationController
   end
 
   def update_avatar
-    # current_user.update params.require(:user).permit(:avatar)
+    current_user.update params.require(:user).permit(:avatar)
   end
 
   protected
