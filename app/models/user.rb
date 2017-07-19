@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   validates :fullname, presence: true, format: { with: FULLNAME_REGEX, message: "should be one word" }, unless: :facebook_login?
   validates :password, presence: true, length: { minimum: 8 }, unless: :facebook_login?
 
-  attr_accessible :avatar_data, :avatar
   attr_accessor :avatar_data
 
   has_attached_file :avatar, styles: { medium: ["300x300>", :png], thumb: ["100x100>", :png]}
