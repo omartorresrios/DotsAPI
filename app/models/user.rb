@@ -42,11 +42,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  # def avatar_url
-  #   if facebook_login? && avatar.url.nil?
-  #     "https://graph.facebook.com/#{facebook_id}/picture?type=large"
-  #   else
-  #     avatar.url    
-  #   end
-  # end
+  def avatar_url
+    if facebook_login? && avatar.url.nil?
+      "https://graph.facebook.com/#{facebook_id}/picture?type=large"
+    else
+      avatar.url    
+    end
+  end
 end
