@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
+  has_attached_file :avatar, styles: { thumb: '100x100>', square: '200x200#', medium: '300x300>' }
   has_secure_password validations: false
-  include Paperclip::Glue
 
   has_many :send_reviews, :class_name => 'Review', :foreign_key => 'from', :dependent => :nullify
   has_many :received_reviews, :class_name => 'Review', :foreign_key => 'to', :dependent => :nullify
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :avatar_data
 
-  has_attached_file :avatar, styles: { thumb: '100x100>', square: '200x200#', medium: '300x300>' }
+  
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   before_save :decode_avatar_data
