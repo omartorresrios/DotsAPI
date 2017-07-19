@@ -56,12 +56,6 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.0.6)
-    carrierwave (0.11.2)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
-      mimemagic (>= 0.3.0)
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -325,13 +319,12 @@ DEPENDENCIES
   aws-sdk (~> 2.3)
   bcrypt (~> 3.1.7)
   byebug
-  carrierwave (~> 0.11.2)
   figaro
   fog (~> 1.38)
   jbuilder (~> 2.0)
   jquery-rails
   jwt (~> 1.5)
-  paperclip (~> 5.0.0)
+  paperclip
   pg (~> 0.15)
   rack-cors
   rails (= 4.2.6)
