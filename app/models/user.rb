@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :avatar_data
 
-  has_attached_file :avatar, styles: { thumb: '100x100>', square: '200x200#', medium: '300x300>' }
-  
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   before_save :decode_avatar_data
 
