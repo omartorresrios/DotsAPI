@@ -1,3 +1,4 @@
-== This is the other version of my [Humans](https://github.com/omartorresrios/Humans) app. I still work on it, with own Backend (Ruby on Rails), instead of Firebase. I using JWT for secure authentication.
+== This is the other version of my Humans -> (https://github.com/omartorresrios/Humans) app. 
+I still work on it, with own Backend (Ruby on Rails), instead of Firebase. I using JWT for secure authentication.
 
 
