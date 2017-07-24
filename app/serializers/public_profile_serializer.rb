@@ -1,11 +1,3 @@
 class PublicProfileSerializer < ActiveModel::Serializer
-  attributes :id, :created_at, :attrs
-
-  def attrs
-    {
-      username: object.username,
-      fullname: object.fullname,
-      avatar_url: object.avatar_url
-    }
-  end
+  attributes :id, :created_at, :attrs, :username, :fullname, :avatar_url
 end

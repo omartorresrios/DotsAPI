@@ -5,10 +5,4 @@ class CurrentUserSerializer < ActiveModel::Serializer
     JsonWebToken.encode({ user_id: object.id })
   end
 
-  # def attrs
-  #   {
-      
-  #   }
-  # end
-
 end
