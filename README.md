@@ -1,6 +1,6 @@
 # Humans API
 
-API server for [Humans](github.com/omartorresrios/HumansiOSRails) built with Ruby on Rails.
+API server for [Humans](https://github.com/omartorresrios/HumansiOSRails) built with Ruby on Rails.
 
 ## Contribution
 
