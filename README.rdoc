@@ -1,4 +1,7 @@
-== This is the other version of my Humans -> (https://github.com/omartorresrios/Humans) app. 
-I still work on it, with own Backend (Ruby on Rails), instead of Firebase. I using JWT for secure authentication.
+# Humans API
 
+API server for [Humans](https://github.com/omartorresrios/HumansiOSRails) built with Ruby on Rails.
 
+## Contribution
+
+Feedbacks, and issue reports are more than welcome :)
