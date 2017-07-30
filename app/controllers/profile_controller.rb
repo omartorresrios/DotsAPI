@@ -22,13 +22,13 @@ class ProfileController < ApplicationController
   end
 
   def reviews
-    @reviews = @user.received_reviews.order(created_at: :desc)
+    @reviews = @user.received_reviews.recent
     render json: @reviews, status: 200
   end
 
   private
     def review_params
-      params.permit(:content)
+      params.permit(:content, :isPositive)
     end
 
     def set_user
