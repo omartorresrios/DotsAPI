@@ -28,9 +28,9 @@ Rails.application.routes.draw do
 
     # patch ':username/avatar' => 'avatar_images#update'
 
-    get ':username/public_profile' => 'profile#show'
-    get ':username/reviews' => 'profile#reviews'
-    post ':username/write' => 'profile#write'
+    get ':fullname/public_profile' => 'profile#show'
+    get ':fullname/reviews' => 'profile#reviews'
+    post ':fullname/write' => 'profile#write'
 
     get 'all_users' => 'search#index'
     # get 'search' => 'search#search'
