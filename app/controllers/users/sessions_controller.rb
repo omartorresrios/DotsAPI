@@ -11,6 +11,6 @@ class Users::SessionsController < ApplicationController
   private
 
     def email_or_fullname
-      params[:email] || params[:fullname]
+      params[:email]
     end
 end

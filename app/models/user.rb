@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   before_save :decode_avatar_data
 
   def self.authenticate(email_or_fullname, password)
-    user = User.find_by(email: email_or_fullname) || User.find_by(username: email_or_fullname)
+    user = User.find_by(email: email_or_fullname)
     user && user.authenticate(password)
   end
 
