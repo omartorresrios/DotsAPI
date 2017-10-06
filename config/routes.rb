@@ -30,11 +30,17 @@ Rails.application.routes.draw do
 
     get ':fullname/public_profile' => 'profile#show'
     get ':fullname/reviews' => 'profile#reviews'
+    get ':fullname/events' => 'profile#events'
+
     post ':fullname/write' => 'profile#write'
 
     get 'all_users' => 'search#index'
     # get 'search' => 'search#search'
     # post 'search' => 'search#do_search'
+
+    # Events
+    post 'writeEvent' => 'event#create'
+    
 
     # Avatar
     get 'avatar' => 'settings#avatar'

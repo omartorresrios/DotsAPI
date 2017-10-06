@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password validations: false
 
+  has_many :events, dependent: :destroy
+
   has_many :send_reviews, class_name: 'Review', foreign_key: 'from', dependent: :nullify
   has_many :received_reviews, class_name: 'Review', foreign_key: 'to', dependent: :nullify
 

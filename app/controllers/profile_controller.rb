@@ -11,6 +11,11 @@ class ProfileController < ApplicationController
     end
   end
 
+  def events
+    events = @user.events
+    render json: events, status: 200
+  end
+
   def write
     review = Review.create_review(@user, current_user, review_params)
     # redirect_to profile_reviews_path params[:username]
