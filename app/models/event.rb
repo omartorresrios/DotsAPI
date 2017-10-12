@@ -18,21 +18,37 @@ class Event < ActiveRecord::Base
   #   includes(:user, :comments).order(created_at: :desc).paginate(page: page, per_page: per_page)
   # }
 
-  attr_accessor :picture_data
+  # attr_accessor :picture_data
+  attr_accessor :video_data
 
-  before_save :decode_picture_data
+  # before_save :decode_picture_data
+  before_save :code_video_data
 
-  def decode_picture_data
+  # def decode_picture_data
+  #   # If avatar_data is present, it means that we were sent an avatar over
+  #   # JSON and it needs to be decoded.  After decoding, the avatar is processed
+  #   # normally via Paperclip.
+  #   if self.picture_data.present?
+  #     data = StringIO.new(Base64.decode64(self.picture_data))
+  #     data.class.class_eval {attr_accessor :original_filename, :content_type}
+  #     data.original_filename = self.id.to_s + ".png"
+  #     data.content_type = "image/png"
+
+  #     self.picture = data
+  #   end
+  # end
+
+  def code_video_data
     # If avatar_data is present, it means that we were sent an avatar over
     # JSON and it needs to be decoded.  After decoding, the avatar is processed
     # normally via Paperclip.
-    if self.picture_data.present?
-      data = StringIO.new(Base64.decode64(self.picture_data))
+    if self.video_data.present?
+      data = StringIO.new(Base64.decode64(self.video_data))
       data.class.class_eval {attr_accessor :original_filename, :content_type}
-      data.original_filename = self.id.to_s + ".png"
-      data.content_type = "image/png"
+      data.original_filename = self.id.to_s + ".mov"
+      data.content_type = "video/mov"
 
-      self.picture = data
+      self.video = data
     end
   end
 
