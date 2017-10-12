@@ -19,7 +19,6 @@ gem "rails-api"
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'paperclip-av-transcoder'
-gem "paperclip-ffmpeg"
 
 group :development, :test do
   gem 'byebug'
