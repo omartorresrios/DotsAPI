@@ -9,8 +9,11 @@ class Event < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
 
-  has_attached_file :picture, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150>" }
-  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
+  # has_attached_file :picture, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150>" }
+  # validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
+
+  has_attached_file :video, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150>" }
+  validates_attachment_content_type :video, content_type: /\Avideo\/.*\z/
 
   # mount_uploader :photo, PhotoUploader
 
