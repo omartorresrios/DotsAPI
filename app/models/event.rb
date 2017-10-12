@@ -48,8 +48,8 @@ class Event < ActiveRecord::Base
     if self.video_data.present?
       data = StringIO.new(Base64.decode64(self.video_data))
       data.class.class_eval {attr_accessor :original_filename, :content_type}
-      data.original_filename = self.id.to_s + ".mov"
-      data.content_type = "video/mov"
+      data.original_filename = self.id.to_s + ".mp4"
+      data.content_type = "video/mp4"
 
       self.video = data
     end
