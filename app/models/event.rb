@@ -12,11 +12,14 @@ class Event < ActiveRecord::Base
   # has_attached_file :picture, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150>" }
   # validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
 
-  has_attached_file :video, :styles => {
-    :medium => { :geometry => "640x480", :format => 'flv' },
-    :thumb => { :geometry => "100x100#", :format => 'jpg', :time => 10 }
-  }, :processors => [:transcoder]
-  validates_attachment_content_type :video, content_type: /\Avideo\/.*\z/
+  has_attached_file :video, styles: {
+        :medium => {
+          :geometry => "640x480",
+          :format => 'mp4'
+        },
+        :thumb => { :geometry => "160x120", :format => 'jpeg', :time => 10}
+    }, :processors => [:transcoder]
+    validates_attachment_content_type :video, content_type: /\Avideo\/.*\Z/
 
   # mount_uploader :photo, PhotoUploader
 

@@ -237,6 +237,7 @@ GEM
       av (~> 0.9.0)
       paperclip (>= 2.5.2)
     pg (0.20.0)
+    puma (3.8.2)
     rack (1.6.5)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -332,6 +333,7 @@ DEPENDENCIES
   paperclip
   paperclip-av-transcoder
   pg (~> 0.15)
+  puma
   rack-cors
   rails (= 4.2.6)
   rails-api
