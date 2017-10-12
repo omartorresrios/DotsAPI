@@ -31,7 +31,7 @@ class Event < ActiveRecord::Base
   attr_accessor :video_data
 
   # before_save :decode_picture_data
-  before_save :code_video_data
+  before_save :decode_video_data
 
   # def decode_picture_data
   #   # If avatar_data is present, it means that we were sent an avatar over
@@ -47,7 +47,7 @@ class Event < ActiveRecord::Base
   #   end
   # end
 
-  def code_video_data
+  def decode_video_data
     # If avatar_data is present, it means that we were sent an avatar over
     # JSON and it needs to be decoded.  After decoding, the avatar is processed
     # normally via Paperclip.
