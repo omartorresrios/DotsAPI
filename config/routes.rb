@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
     # Events
     post 'writeEvent' => 'event#create'
+    get 'all_events' => 'event#index'
     
 
     # Avatar
