@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
     }, :processors => [:transcoder]
     validates_attachment_content_type :video, content_type: /\Avideo\/.*\Z/
 
-  mount_uploader :photo, PhotoUploader
+  # mount_uploader :photo, PhotoUploader
 
   # scope :get_page, -> (page, per_page = 10) {
   #   includes(:user, :comments).order(created_at: :desc).paginate(page: page, per_page: per_page)
