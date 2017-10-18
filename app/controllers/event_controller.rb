@@ -18,6 +18,6 @@ class EventController < ApplicationController
   private
 
     def event_params
-      params.permit(:description, :video)
+      params.permit(:description, :picture)
     end
 end
