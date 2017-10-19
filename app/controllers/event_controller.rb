@@ -2,7 +2,7 @@ class EventController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    events = Event.all#get_page(params[:page])
+    events = Event.find(params[:id])#get_page(params[:page])
     render json: events, serializer: AllEventsSerializer, status: 200
   end
 

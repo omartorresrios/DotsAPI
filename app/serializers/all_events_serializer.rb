@@ -4,5 +4,5 @@ class AllEventsSerializer < ActiveModel::Serializer
   			 :updated_at, :user_id, :video_content_type, :video_file_name,
   			 :video_file_size, :video_updated_at, :event_url
 
-  belongs_to :user, serializer: CurrentUserSerializer
+  belongs_to :user, serializer: UserSerializer
 end
