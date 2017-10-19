@@ -2,8 +2,9 @@ class EventController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    events = current_user.events#get_page(params[:page])
-    render json: events, serializer: AllEventsSerializer, status: 200
+    events = Event.find(params[:id])
+    events[:picture_url] = events.picture.url(:medium)
+    render json: events, status: 200
   end
 
   def create
