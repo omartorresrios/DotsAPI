@@ -7,7 +7,7 @@ class EventController < ApplicationController
     render :json => events.to_json(:only => [:id, :created_at, :description, :likes_count, :picture_content_type, 
          :picture_file_name, :picture_file_size, :picture_updated_at,
          :updated_at, :user_id, :video_content_type, :video_file_name,
-         :video_file_size, :video_updated_at], :methods => [:avatar_url]), status: 200
+         :video_file_size, :video_updated_at], :methods => [:event_url]), status: 200
   end
 
   def create
