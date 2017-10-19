@@ -3,7 +3,7 @@ class EventController < ApplicationController
 
   def index
     events = Event.all#get_page(params[:page])
-    render json: events, status: 200
+    render json: events, serializer: AllEventsSerializer, status: 200
   end
 
   def create
