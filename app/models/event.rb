@@ -62,8 +62,7 @@ class Event < ActiveRecord::Base
   end
 
   def event_url
-      picture.url    
-    end
+    picture.url
   end
 
 end
