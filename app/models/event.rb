@@ -44,6 +44,7 @@ class Event < ActiveRecord::Base
       data.content_type = "image/png"
 
       self.picture = data
+      event_url
     end
   end
 
