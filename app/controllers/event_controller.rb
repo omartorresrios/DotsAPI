@@ -2,8 +2,7 @@ class EventController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    events = Event.find(params[:id])
-    # events[:picture_url] = events.picture.url(:medium)
+    events = Event.all
     render json: events, status: 200
   end
 
