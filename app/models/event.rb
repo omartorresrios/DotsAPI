@@ -1,7 +1,4 @@
 class Event < ActiveRecord::Base
-
-  include ActiveModel::Serialization
-  
   belongs_to :user
   # has_many :likes, dependent: :destroy
   # has_many :likers, through: :likes, source: :user
