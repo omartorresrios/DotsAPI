@@ -61,11 +61,8 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def picture_url
-    picture.url
+  def event_url
+    picture.url || video.url
   end
 
-  def video_url
-    video.url
-  end
 end
