@@ -62,7 +62,7 @@ class Event < ActiveRecord::Base
   end
 
   def event_url
-    if picture.url.nil?
+    if picture[:picture_file_name].nil?
       video.url(:original)
     else
       picture.url
