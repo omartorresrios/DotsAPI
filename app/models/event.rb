@@ -9,8 +9,8 @@ class Event < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
 
-  has_attached_file :picture, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150>" }
-  validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
+  # has_attached_file :picture, styles: { large: "600x600>", medium: "300x300>", thumb: "150x150>" }
+  # validates_attachment_content_type :picture, content_type: /\Aimage\/.*\z/
 
   has_attached_file :video, styles: {
         :medium => {
@@ -27,25 +27,25 @@ class Event < ActiveRecord::Base
   #   includes(:user, :comments).order(created_at: :desc).paginate(page: page, per_page: per_page)
   # }
 
-  attr_accessor :picture_data
+  # attr_accessor :picture_data
   attr_accessor :video_data
 
-  before_save :decode_picture_data
+  # before_save :decode_picture_data
   before_save :decode_video_data
 
-  def decode_picture_data
-    # If avatar_data is present, it means that we were sent an avatar over
-    # JSON and it needs to be decoded.  After decoding, the avatar is processed
-    # normally via Paperclip.
-    if self.picture_data.present?
-      data = StringIO.new(Base64.decode64(self.picture_data))
-      data.class.class_eval {attr_accessor :original_filename, :content_type}
-      data.original_filename = self.id.to_s + ".png"
-      data.content_type = "image/png"
+  # def decode_picture_data
+  #   # If avatar_data is present, it means that we were sent an avatar over
+  #   # JSON and it needs to be decoded.  After decoding, the avatar is processed
+  #   # normally via Paperclip.
+  #   if self.picture_data.present?
+  #     data = StringIO.new(Base64.decode64(self.picture_data))
+  #     data.class.class_eval {attr_accessor :original_filename, :content_type}
+  #     data.original_filename = self.id.to_s + ".png"
+  #     data.content_type = "image/png"
 
-      self.picture = data
-    end
-  end
+  #     self.picture = data
+  #   end
+  # end
 
   def decode_video_data
     # If avatar_data is present, it means that we were sent an avatar over
@@ -62,11 +62,11 @@ class Event < ActiveRecord::Base
   end
 
   def event_url
-    if self.picture_file_name.nil?
-      video.url(:original)
-    else
-      picture.url
-    end
+    # if self.picture_file_name.nil?
+    video.url(:original)
+    # else
+    #   picture.url
+    # end
   end
 
 end
