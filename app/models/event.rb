@@ -69,4 +69,8 @@ class Event < ActiveRecord::Base
     # end
   end
 
+  def user_avatar_url
+    user.avatar.url
+  end
+
 end

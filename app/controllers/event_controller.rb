@@ -4,7 +4,7 @@ class EventController < ApplicationController
   def index
     events = Event.all
     # render json: events.to_json(:methods => [event_url]), status: 200
-    render :json => events.to_json(:methods => [:event_url]), status: 200
+    render :json => events.to_json(:methods => [:event_url, :user_avatar_url]), status: 200
   end
 
   def create
