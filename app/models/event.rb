@@ -69,6 +69,10 @@ class Event < ActiveRecord::Base
     # end
   end
 
+  def event_url_thumb
+    video.url(:thumb)
+  end
+
   def user_avatar_url
     user.avatar.url
   end
