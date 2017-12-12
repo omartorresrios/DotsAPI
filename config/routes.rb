@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     # Public profile (other users)
     get ':fullname/public_profile' => 'profile#show'
     post ':fullname/write' => 'profile#write'
+    get ':fullname/events' => 'profile#events'
+    get ':fullname/reviews' => 'profile#reviews'
 
     get 'all_users' => 'search#index'
     # get 'search' => 'search#search'
