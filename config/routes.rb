@@ -28,10 +28,12 @@ Rails.application.routes.draw do
 
     # patch ':username/avatar' => 'avatar_images#update'
 
-    get ':fullname/public_profile' => 'profile#show'
-    get ':fullname/reviews' => 'profile#reviews'
-    get ':fullname/events' => 'profile#events'
+    # Current user
+    get 'reviews' => 'users#reviews'
+    get 'events' => 'users#events'
 
+    # Public profile (other users)
+    get ':fullname/public_profile' => 'profile#show'
     post ':fullname/write' => 'profile#write'
 
     get 'all_users' => 'search#index'
@@ -42,7 +44,6 @@ Rails.application.routes.draw do
     post 'writeEvent' => 'event#create'
     get 'all_events' => 'event#index'
     
-
     # Avatar
     get 'avatar' => 'settings#avatar'
     patch 'avatar' => 'settings#update_avatar'
