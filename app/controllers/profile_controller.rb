@@ -3,14 +3,30 @@ class ProfileController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    user = User.find_by(fullname: params[:fullname])
-    if user.present?
-      render json: user, serializer: PublicProfileSerializer, status: 200
+    if @user.present?
+      render json: @user, serializer: PublicProfileSerializer, status: 200
     else
       render json: { errors: ["User not found"] }, status: 422
     end
   end
-  
+
+  def reviews
+    if @user.present?
+      render json: @user.received_reviews.recent, status: 200
+    else
+      render json: { errors: ["User not found"] }, status: 422
+    end
+  end
+
+  def events
+    if @user.present?
+      events = @user.events
+      render :json => events.to_json(:methods => [:event_url, :user_avatar_url]), status: 200
+    else
+      render json: { errors: ["User not found"] }, status: 422
+    end
+  end
+
   def write
     review = Review.create_review(@user, current_user, review_params)
     # redirect_to profile_reviews_path params[:username]
