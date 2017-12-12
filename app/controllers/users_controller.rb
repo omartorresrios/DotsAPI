@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def events
     events = @user.events
-    render json: events, status: 200
+    render :json => events.to_json(:methods => [:event_url, :event_url_thumb, :user_avatar_url]), status: 200
   end
 
   def reviews
