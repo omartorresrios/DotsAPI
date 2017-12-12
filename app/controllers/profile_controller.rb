@@ -3,7 +3,7 @@ class ProfileController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    user = User.find_by(username: params[:username])
+    user = User.find_by(fullname: params[:fullname])
     if user.present?
       render json: user, serializer: PublicProfileSerializer, status: 200
     else
