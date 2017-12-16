@@ -34,7 +34,7 @@ class Review < ActiveRecord::Base
     review.to = user.id
     review.audio = params[:audio]
     # review.anonymous = params[:anonymous].to_i == 1 ? true : false
-    review.isPositive = params[:isPositive]
+    review.duration = params[:duration]
     review.created_at = Time.now
     review.save
     review

@@ -39,7 +39,7 @@ class ProfileController < ApplicationController
 
   private
     def review_params
-      params.permit(:audio, :isPositive)
+      params.permit(:audio, :duration)
     end
 
     def set_user
