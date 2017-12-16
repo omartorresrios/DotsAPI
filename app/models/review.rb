@@ -40,6 +40,10 @@ class Review < ActiveRecord::Base
     review
   end
 
+  def review_url
+    audio.url
+  end
+
   def self.answer(user_id, review_id, params)
     params[:replied_at] = Time.now
 
