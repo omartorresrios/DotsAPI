@@ -32,7 +32,7 @@ class Review < ActiveRecord::Base
     review = Review.new
     review.from = current.nil? ? nil : current.id
     review.to = user.id
-    review.content = params[:content]
+    review.content = params[:audio]
     # review.anonymous = params[:anonymous].to_i == 1 ? true : false
     review.isPositive = params[:isPositive]
     review.created_at = Time.now

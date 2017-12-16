@@ -27,7 +27,7 @@ class ProfileController < ApplicationController
     end
   end
 
-  def write
+  def speak
     review = Review.create_review(@user, current_user, review_params)
     # redirect_to profile_reviews_path params[:username]
     if review.save
@@ -39,7 +39,7 @@ class ProfileController < ApplicationController
 
   private
     def review_params
-      params.permit(:content, :isPositive)
+      params.permit(:audio, :isPositive)
     end
 
     def set_user
