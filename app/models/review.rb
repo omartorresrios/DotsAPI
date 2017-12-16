@@ -4,7 +4,25 @@ class Review < ActiveRecord::Base
 
   validates :content, presence: true
 
+  has_attached_file :audio, :processors => [:transcoder]
+  validates_attachment_content_type :audio, :content_type => /.*/
+
   scope :recent, -> { order(created_at: :desc) }
+
+  attr_accessor :audio_data
+
+  before_save :decode_audio_data
+
+  def decode_audio_data
+    if self.audio_data.present?
+      data = StringIO.new(Base64.decode64(self.audio_data))
+      data.class.class_eval {attr_accessor :original_filename, :content_type}
+      data.original_filename = self.id.to_s + ".m4a"
+      data.content_type = "audio/m4a"
+
+      self.audio = data
+    end
+  end
 
   def self.mine(user_id, review_id)
     where(to: user_id).where(id: review_id).first
