@@ -12,7 +12,7 @@ class ProfileController < ApplicationController
 
   def reviews
     if @user.present?
-      render :json => @user.received_reviews.recent, status: 200
+      render :json => @user.received_reviews.recent.to_json(:methods => [:from_avatar, :from_fullname, :from_id, :from_username, :to_avatar, :to_fullname, :to_id, :to_username]), status: 200
     else
       render json: { errors: ["User not found"] }, status: 422
     end
@@ -35,6 +35,22 @@ class ProfileController < ApplicationController
     else
       render json: { errors: review.errors.full_messages }, status: 422
     end
+  end
+
+  def to_avatar
+    @user.avatar.url
+  end
+
+  def to_fullname
+    @user.fullname
+  end
+
+  def to_id
+    @user.id
+  end
+
+  def to_username
+    @user.username
   end
 
   private

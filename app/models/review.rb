@@ -40,8 +40,20 @@ class Review < ActiveRecord::Base
     review
   end
 
-  def review_url
-    audio.url
+  def from_avatar
+    current.avatar.url
+  end
+
+  def from_fullname
+    current.fullname
+  end
+
+  def from_id
+    current.id
+  end
+
+  def from_username
+    current.username
   end
 
   def self.answer(user_id, review_id, params)
