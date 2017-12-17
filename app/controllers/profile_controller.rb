@@ -12,7 +12,7 @@ class ProfileController < ApplicationController
 
   def reviews
     if @user.present?
-      render :json => @user.received_reviews, status: 200
+      render :json => @user.received_reviews.recent, serializer: ReviewSerializer, status: 200
     else
       render json: { errors: ["User not found"] }, status: 422
     end
