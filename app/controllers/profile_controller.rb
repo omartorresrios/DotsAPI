@@ -37,6 +37,22 @@ class ProfileController < ApplicationController
     end
   end
 
+  def from_avatar
+    current.avatar.url
+  end
+
+  def from_fullname
+    current.fullname
+  end
+
+  def from_id
+    current.id
+  end
+
+  def from_username
+    current.username
+  end
+  
   def to_avatar
     @user.avatar.url
   end
