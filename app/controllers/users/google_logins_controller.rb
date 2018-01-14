@@ -2,10 +2,12 @@ class Users::GoogleLoginsController < ApplicationController
   def create
     @user = User.find_by(google_id: params[:google_id]) if params[:google_id].present?
     if @user
+      render json: { errors: ["User found"] }, status: 200
       render json: @user, serializer: CurrentUserSerializer, status: 200
     else
-      @user = User.create!(user_params)
-      render json: @user, serializer: CurrentUserSerializer, status: 201
+    	render json: { errors: ["User not found"] }, status: 422
+      # @user = User.create!(user_params)
+      # render json: @user, serializer: CurrentUserSerializer, status: 201
     end
   end
 
