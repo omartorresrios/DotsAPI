@@ -13,8 +13,9 @@ class Users::FacebookLoginsController < ApplicationController
   private
 
     def user_params
+      params.permit(:facebook_id, :username).merge(password: 'password')
       username = generate_unique_username
-      params.permit(:google_id).merge(username: username)
+      params.permit(:facebook_id).merge(username: username)
     end
 
     def generate_unique_username
