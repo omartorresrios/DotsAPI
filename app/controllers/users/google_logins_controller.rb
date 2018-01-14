@@ -17,7 +17,7 @@ class Users::GoogleLoginsController < ApplicationController
     end
 
     def generate_unique_username
-      name = params[:username].split.join('-').downcase
+      name = User.find_by(username: params[:username]).split.join('-').downcase
       loop do
         username = "#{name}#{SecureRandom.random_number(1000..9999).to_s}"
         break username unless User.exists?(username: username)
