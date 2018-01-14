@@ -2,7 +2,7 @@ class Users::GoogleLoginsController < ApplicationController
   def create
     @user = User.find_by(google_id: params[:google_id]) if params[:google_id].present?
     if @user
-      render json: @user, serializer: CurrentUserSerializer, status: 200
+      render json: @user.to_json, status: 200
     # else
     #   # TODO: create unique username
       # @user = User.create!(user_params)
