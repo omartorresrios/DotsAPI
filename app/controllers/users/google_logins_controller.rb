@@ -12,15 +12,15 @@ class Users::GoogleLoginsController < ApplicationController
   private
 
     def user_params
-      username = generate_unique_username
-      params.permit(:google_id).merge(username: username)
+      fullname = generate_unique_fullname
+      params.permit(:google_id).merge(fullname: fullname)
     end
 
     def generate_unique_username
-      name = User.find_by(username: params[:username]).split.join('-').downcase
+      name = params[:fullname].split.join('-').downcase
       loop do
-        username = "#{name}#{SecureRandom.random_number(1000..9999).to_s}"
-        break username unless User.exists?(username: username)
+        fullname = "#{name}#{SecureRandom.random_number(1000..9999).to_s}"
+        break fullname unless User.exists?(fullname: fullname)
       end
     end
 end
