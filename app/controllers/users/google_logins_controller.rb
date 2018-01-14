@@ -12,7 +12,7 @@ class Users::GoogleLoginsController < ApplicationController
   private
 
     def user_params
-      params.permit(:fullname, :email, :avatar)
+      params.permit(:fullname, :email, :avatar, :google_id)
     end
 
     # def generate_unique_fullname
