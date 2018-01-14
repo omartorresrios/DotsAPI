@@ -19,6 +19,7 @@ gem "rails-api"
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'paperclip-av-transcoder'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   gem 'byebug'
