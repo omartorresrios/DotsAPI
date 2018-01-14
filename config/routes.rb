@@ -20,10 +20,16 @@ Rails.application.routes.draw do
 
 
   scope '/api' do
+
+    get 'login', to: redirect('/auth/google_oauth2'), as: 'login'
+    get 'logout', to: 'sessions#destroy', as: 'logout'
+    get 'auth/:provider/callback', to: 'sessions#create'
+
     namespace :users do
       post 'signup' => 'registrations#create'
       post 'signin' => 'sessions#create'
-      # post 'facebook/login' => 'facebook_logins#create'
+      #post 'facebook/login' => 'facebook_logins#create'
+      post 'google/login' => 'google_logins#create'
     end
 
     # patch ':username/avatar' => 'avatar_images#update'

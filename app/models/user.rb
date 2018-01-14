@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
   EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   FULLNAME_REGEX = /\A[a-zA-Z0-9_-]{3,30}\z/
 
-  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }, unless: :facebook_login?
+  validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }, unless: :google_login?
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates :fullname, presence: true, format: { with: FULLNAME_REGEX, message: "should be one word" }, unless: :facebook_login?
-  validates :password, presence: true, length: { minimum: 8 }, unless: :facebook_login?
+  validates :fullname, presence: true, format: { with: FULLNAME_REGEX, message: "should be one word" }, unless: :google_login?
+  validates :password, presence: true, length: { minimum: 8 }, unless: :google_login?
 
   attr_accessor :avatar_data
 
@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
 
   def facebook_login?
     facebook_id.present?
+  end
+
+  def google_login?
+    google_id.present?
   end
 
   def decode_avatar_data
