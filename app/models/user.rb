@@ -26,6 +26,11 @@ class User < ActiveRecord::Base
     user && user.authenticate(password)
   end
 
+  def self.authenticate_google(google_id)
+    user = User.find_by(google_id: google_id)
+    user && user.authenticate(google_id)
+  end
+
   def facebook_login?
     facebook_id.present?
   end
