@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }, unless: :google_login?
   # validates :google_id, presence: true, uniqueness: { case_sensitive: false }
   # validates :username, presence: true, uniqueness: { case_sensitive: false }, unless: :google_login?
-  validates :fullname, presence: true, format: { with: FULLNAME_REGEX, message: "should be one word" }, unless: :google_login?
+  validates :fullname, presence: true, unless: :google_login?
   # validates :password, presence: true, length: { minimum: 8 }, unless: :google_login?
 
   attr_accessor :avatar_data
