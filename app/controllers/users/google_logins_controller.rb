@@ -16,7 +16,7 @@ class Users::GoogleLoginsController < ApplicationController
       params.permit(:google_id).merge(fullname: fullname)
     end
 
-    def generate_unique_username
+    def generate_unique_fullname
       name = params[:fullname].split.join('-').downcase
       loop do
         fullname = "#{name}#{SecureRandom.random_number(1000..9999).to_s}"
