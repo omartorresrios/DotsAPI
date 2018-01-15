@@ -19,7 +19,7 @@ class ProfileController < ApplicationController
   end
 
   def events
-    if @user.id.present?
+    if @user.user_id.present?
       events = @user.events
       render :json => events.to_json(:methods => [:event_url, :user_avatar_url, :user_fullname]), status: 200
     else
