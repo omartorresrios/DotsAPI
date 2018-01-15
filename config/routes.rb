@@ -40,9 +40,9 @@ Rails.application.routes.draw do
 
     # Public profile (other users)
     get ':fullname/public_profile' => 'profile#show'
-    post ':fullname/speak' => 'profile#speak'
+    post ':id/speak' => 'profile#speak'
     get ':id/events' => 'profile#events'
-    get ':fullname/reviews' => 'profile#reviews'
+    get ':id/reviews' => 'profile#reviews'
 
     get 'all_users' => 'search#index'
     # get 'search' => 'search#search'
