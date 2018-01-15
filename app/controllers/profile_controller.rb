@@ -43,6 +43,6 @@ class ProfileController < ApplicationController
     end
 
     def set_user
-      @user = User.find_by(fullname: params[:fullname])
+      @user = User.find_by(user_id: params[:user_id])
     end
 end
