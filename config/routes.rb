@@ -48,6 +48,8 @@ Rails.application.routes.draw do
     # get 'search' => 'search#search'
     # post 'search' => 'search#do_search'
 
+    get 'all_reviews' => 'home#index'
+
     # Events
     post 'writeEvent' => 'event#create'
     get 'all_events' => 'event#index'
