@@ -1,6 +1,6 @@
-# Gouto API
+# Dots API
 
-API server for [Gouto](https://github.com/omartorresrios/Gouto) built with Ruby on Rails.
+API server for [Dots](https://github.com/omartorresrios/Dots) built with Ruby on Rails.
 
 ## Contribution
 
