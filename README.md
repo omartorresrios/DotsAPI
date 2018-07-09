@@ -1,6 +1,6 @@
-# Humans API
+# Gouto API
 
-API server for [Humans](https://github.com/omartorresrios/HumansiOSRails) built with Ruby on Rails.
+API server for [Gouto](https://github.com/omartorresrios/Gouto) built with Ruby on Rails.
 
 ## Contribution
 
